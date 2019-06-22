@@ -5,7 +5,7 @@ public class HomeTask {
     возвращающий результат с плавающей точкой, где a, b, c, d – целочисленные входные параметры этого метода; */
 
     public static float calculate (int a, int b, int c, int d){
-        return a * (b + (c / d));
+        return a * (b + (c*1.0f / d));
     }
 
     /*Написать метод, принимающий на вход два целых числа, и проверяющий,
@@ -15,11 +15,7 @@ public class HomeTask {
     public static boolean between10and20 (int a, int b){
         int c;
         c = a + b;
-        if ((c>=10) & (c<=20)){
-            return true;
-        } else{
-            return false;
-        }
+        return ((c>=10) & (c<=20));
     }
 
     /*Написать метод, которому в качестве параметра передается целое число,
@@ -27,13 +23,9 @@ public class HomeTask {
     или отрицательное. Замечание: ноль считаем положительным числом.
     Результат работы метода вывести в консоль */
 
-    public static void isPositiveOrNegative (int a){
+    public static boolean isPositive (int a){
 
-        if (a >= 0){
-            System.out.println("Значение а = " + a + " - положительное");
-        } else{
-            System.out.println("Значение а = " + a + " - отрицательное");
-        }
+       return (a >= 0);
     }
 
     /* Написать метод, которому в качестве параметра передается строка,
@@ -41,9 +33,9 @@ public class HomeTask {
     Вывести приветствие в консоль.
      */
 
-    public static void privet(String name){
+    public static String privet(String name){
 
-        System.out.println("Привет, " + name + "!");
+       return ("Привет, " + name + "!");
     }
 
     /*Написать метод, который определяет является ли год високосным.
@@ -51,21 +43,9 @@ public class HomeTask {
     Для проверки работы вывести результаты работы метода в консоль
      */
 
-    public static void leapYear(int year){
+    public static boolean leapYear(int year){
 
-        if (year <=0){
-            System.out.println("Year can't be negative!!!");
-        }else {
-            if (year % 4 == 0) {
-                if (year % 100 == 0 & !(year / 100 % 4 == 0)) {
-                    System.out.println("Year " + year + " is not a leap year(");
-                } else {
-                    System.out.println("Year " + year + " is a leap year)");
-                }
-            } else {
-                System.out.println("Year " + year + " is not a leap year(");
-            }
-        }
+        return (year % 4 == 0) && (year % 100 != 0) || (year % 400 == 0);
 
     }
 
@@ -73,21 +53,21 @@ public class HomeTask {
 
         System.out.println(calculate(5, 10, 32, 96));
         System.out.println(between10and20(3, 5));
-        isPositiveOrNegative(-52);
-        privet("Ann");
+        System.out.println("Ваше число " + ((isPositive(-52) ? "положительное" : "отрицательное")));
+        System.out.println(privet("Ann"));
 
-        leapYear(-2502);
-        leapYear(4);
-        leapYear(5);
-        leapYear(47);
-        leapYear(96);
-        leapYear(100);
-        leapYear(200);
-        leapYear(300);
-        leapYear(400);
-        leapYear(500);
-        leapYear(1200);
-        leapYear(3500);
+        System.out.println(leapYear(-2502));
+        System.out.println(leapYear(4));
+        System.out.println(leapYear(5));
+        System.out.println(leapYear(47));
+        System.out.println(leapYear(96));
+        System.out.println(leapYear(100));
+        System.out.println(leapYear(200));
+        System.out.println(leapYear(300));
+        System.out.println(leapYear(400));
+        System.out.println(leapYear(500));
+        System.out.println(leapYear(1200));
+        System.out.println(leapYear(3500));
 
     }
 }
