@@ -16,6 +16,9 @@ public class TicTakToeHome {
     private static char[][] field;
 
     private static int winDots;
+    private static int score;
+    private static int scoreHuman;
+    private static int scoreComp;
 
     private static void createMap(int x, int y) {
         fieldX = x;
@@ -126,6 +129,7 @@ public class TicTakToeHome {
     }
 
 
+    /*Работате слева направо и сверху вниз, нужно еще справа налево и снизу вверх*/
     private static void aLittleBitIntelligence() {
         int sequence = 0;
         while (true) {
@@ -136,7 +140,7 @@ public class TicTakToeHome {
                     } else {
                         sequence = 0;
                     }
-                    if ((sequence == winDots - 1) && isEmptyCell(i, i)) {
+                    if ((sequence == winDots - 1) && isEmptyCell(k+1, i)) {
                         field[i][k + 1] = COMP_DOT;
                         break;
                     }
@@ -174,37 +178,52 @@ public class TicTakToeHome {
     }
 
     public static void main(String[] args) {
-        createMap(5, 5);
+
         winDots = 4;
-        printMap();
-        while (true) {
-            humanStep();
+        score = 4;
+        scoreHuman = 0;
+        scoreComp = 0;
+
+
+        while (scoreHuman < score && scoreComp < score) {
+            createMap(5, 5);
             printMap();
-            if (checkWin(HUMAN_DOT)) {
-                System.out.println("You are win!!");
-                break;
+            while (true) {
+                humanStep();
+                printMap();
+                if (checkWin(HUMAN_DOT)) {
+
+                    scoreHuman += 1;
+                    System.out.println("You are win!! Cчет: человек - компьютер   " + scoreHuman + " - " + scoreComp);
+                    break;
+                }
+                if (checkMapisFull()) {
+                    System.out.println("It's a draw, so pity( Cчет: человек - компьютер   " + scoreHuman + " - " + scoreComp);
+                    break;
+                }
+                System.out.println();
+                //compStep();
+                aLittleBitIntelligence();
+                printMap();
+                if (checkWin(COMP_DOT)) {
+                    scoreComp += 1;
+                    System.out.println("Comp beat you!! Cчет: человек - компьютер   " + scoreHuman + " - " + scoreComp);
+
+                    break;
+                }
+                if (checkMapisFull()) {
+                    System.out.println("It's a draw, so pity(");
+                    break;
+                }
             }
-            if (checkMapisFull()) {
-                System.out.println("It's a draw, so pity(");
-                break;
-            }
-            System.out.println();
-            //compStep();
-            aLittleBitIntelligence();
-            printMap();
-            if (checkWin(COMP_DOT)) {
-                System.out.println("Comp beat you!!");
-                break;
-            }
-            if (checkMapisFull()) {
-                System.out.println("It's a draw, so pity(");
-                break;
-            }
+
+
+
+
+
+        }
+        System.out.println("Игра окончена. Cчет: человек - компьютер   " + scoreHuman + " - " + scoreComp);
         }
 
-
-    }
-/*Я маленько не поняла задание сперва, где серия = 4, это не подряд идущие точки для выигрыша,
-     а сколько раз надо выиграть( Но уже не успеваю сделать, не судите строго:)*/
 
 }
