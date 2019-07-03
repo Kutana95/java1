@@ -1,6 +1,15 @@
 package geekbrains.lesson4;
 
 public class HomeTask4 {
+
+    private static void increaseSalaryMain(Employee[] arr, int age){
+        for (int i = 0; i<arr.length; i++){
+            if (arr[i].getAge() > age){
+                System.out.println(arr[i].getFullName() + " " + arr[i].getAge());
+            }
+        }
+    }
+
     public static void main(String[] args) {
 
         Employee e1 = new Employee();
@@ -30,8 +39,14 @@ public class HomeTask4 {
 
         /*Создать метод, повышающий зарплату всем сотрудникам старше 45 лет на 5000;
         * Не совсем поняла, сделала 2 решения*/
-        e1.increaseSalary();
-        Employee.increaseSalaryMain(arr);
+
+
+        e1.increaseSalary( 45, 5000);
+
+
+
+
+        increaseSalaryMain(arr, 40);
 
 
         System.out.println("ID: "+ e1.getId());

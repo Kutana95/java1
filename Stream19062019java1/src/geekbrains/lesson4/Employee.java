@@ -52,16 +52,10 @@ public class Employee {
 
     /*Создать метод, повышающий зарплату всем сотрудникам старше 45 лет на 5000;
     * Не совсем поняла, сделала 2 решения*/
-    public void increaseSalary(){
-        if (this.getAge() > 45){this.salary += 5000;}
+    public void increaseSalary(int age, int value){
+        if (this.getAge() > age){this.salary += value;}
     }
+    public void changeSalary(float salary){this.salary = salary;}
 
-    public static void increaseSalaryMain(Employee[] ar){
-        for (int i = 0; i<ar.length; i++){
-            if (ar[i].getAge() > 40){
-                System.out.println(ar[i].getFullName() + " " + ar[i].getAge());
-            }
-        }
-    }
 
 }
